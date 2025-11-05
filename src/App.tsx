@@ -16,6 +16,7 @@ import { HyperChainSection } from './sections/HyperChainSection';
 import { AgentProtocolsLandingSection } from './sections/AgentProtocolsLandingSection';
 import { AgentProtocolsSection } from './sections/AgentProtocolsSection';
 import { AIInterfaceSection } from './sections/AIInterfaceSection';
+import { TokenomicsSection } from './sections/TokenomicsSection';
 import { ClosingSection } from './sections/ClosingSection';
 
 function App() {
@@ -142,6 +143,11 @@ function App() {
       id: 'ai-interface',
       title: 'AI Interface — Human Gateway',
       component: <AIInterfaceSection />
+    },
+    {
+      id: 'tokenomics',
+      title: 'Tokenomics — Incentive Equilibrium',
+      component: <TokenomicsSection />
     },
     {
       id: 'conclusion',
