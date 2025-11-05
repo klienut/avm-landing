@@ -7,7 +7,8 @@ import { ProofFabricCircuitsSection } from './sections/ProofFabricCircuitsSectio
 import { ProofFabricPricingSection } from './sections/ProofFabricPricingSection';
 import { ProofFabricCompositionSection } from './sections/ProofFabricCompositionSection';
 import { HydraLandingSection } from './sections/HydraLandingSection';
-import { HydraSection } from './sections/HydraSection';
+import { HydraPaymentSection } from './sections/HydraPaymentSection';
+import { HiveServiceSection } from './sections/HiveServiceSection';
 import { HyperChainLandingSection } from './sections/HyperChainLandingSection';
 import { DAPSection } from './sections/DAPSection';
 import { NanochainsSection } from './sections/NanochainsSection';
@@ -58,23 +59,13 @@ function App() {
       subsections: [
         {
           id: 'hydra-payments',
-          title: 'Payment Layer Architecture',
-          component: <HydraSection />
-        },
-        {
-          id: 'hydra-htlc',
-          title: 'Proof-Coupled HTLCs',
-          component: <HydraSection />
-        },
-        {
-          id: 'hydra-pricing',
-          title: 'Pricing & Rate Control',
-          component: <HydraSection />
+          title: 'Hydra Payment Architecture',
+          component: <HydraPaymentSection />
         },
         {
           id: 'hive-markets',
           title: 'Hive Service Markets',
-          component: <HydraSection />
+          component: <HiveServiceSection />
         }
       ]
     },
