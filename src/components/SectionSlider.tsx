@@ -111,48 +111,35 @@ export const SectionSlider: React.FC<SectionSliderProps> = ({ sections }) => {
 
   const prevPage = () => {
     const prevIndex = (currentPageIndex - 1 + flattenedPages.length) % flattenedPages.length;
-    const prevPage = flattenedPages[prevIndex];
+    const prevPageData = flattenedPages[prevIndex];
     setCurrentPage({
-      sectionIndex: prevPage.section,
-      subsectionIndex: prevPage.subsection
+      sectionIndex: prevPageData.section,
+      subsectionIndex: prevPageData.subsection
     });
   };
 
   const goToPage = (sectionIndex: number, subsectionIndex?: number) => {
-    const section = sections[sectionIndex];
-    const currentSection = sections[currentPage.sectionIndex];
-    
-    // If we're navigating to a subsection within the same section (like Agent Protocol Suite),
-    // scroll to the specific section instead of changing page
-    if (currentPage.sectionIndex === sectionIndex && 
-        subsectionIndex !== undefined && 
-        section.subsections && 
-        currentSection.subsections) {
-      
-      const subsectionId = section.subsections[subsectionIndex]?.id;
-      if (subsectionId) {
-        // Update the URL hash and scroll to the section
-        window.location.hash = subsectionId;
-        const element = document.getElementById(subsectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        // Update current page to highlight the correct subsection in sidebar
-        setCurrentPage({ sectionIndex, subsectionIndex });
-        return;
-      }
-    }
-    
-    // Default behavior for different sections
     setCurrentPage({ sectionIndex, subsectionIndex });
   };
 
   const getCurrentComponent = () => {
     const section = sections[currentPage.sectionIndex];
-    if (currentPage.subsectionIndex !== undefined && section.subsections) {
-      return section.subsections[currentPage.subsectionIndex]?.component;
+    console.log('getCurrentComponent:', { 
+      sectionIndex: currentPage.sectionIndex, 
+      subsectionIndex: currentPage.subsectionIndex, 
+      section: section?.title,
+      hasSubsections: !!section?.subsections,
+      subsectionTitle: section?.subsections?.[currentPage.subsectionIndex!]?.title 
+    });
+    
+    if (currentPage.subsectionIndex !== undefined && section?.subsections) {
+      const component = section.subsections[currentPage.subsectionIndex]?.component;
+      console.log('Returning subsection component:', !!component);
+      return component;
     }
-    return section?.component;
+    const component = section?.component;
+    console.log('Returning main component:', !!component);
+    return component;
   };
 
   return (
@@ -168,7 +155,7 @@ export const SectionSlider: React.FC<SectionSliderProps> = ({ sections }) => {
       <div className="ml-80">
         <AnimatePresence mode="wait">
           <motion.div
-            key={`${currentPage.sectionIndex}-${currentPage.subsectionIndex}`}
+            key={`${currentPage.sectionIndex}-${currentPage.subsectionIndex ?? 'main'}`}
             initial={{ x: 300, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -300, opacity: 0 }}
