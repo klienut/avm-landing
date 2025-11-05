@@ -1,7 +1,6 @@
 import React from 'react';
 import { SectionSlider } from './components/SectionSlider';
 import { IntroSection } from './sections/IntroSection';
-import { BlockchainStackSection } from './sections/BlockchainStackSection';
 import { ProofFabricLandingSection } from './sections/ProofFabricLandingSection';
 import { ProofFabricOverviewSection } from './sections/ProofFabricOverviewSection';
 import { ProofFabricCircuitsSection } from './sections/ProofFabricCircuitsSection';
@@ -14,7 +13,6 @@ import { DAPSection } from './sections/DAPSection';
 import { NanochainsSection } from './sections/NanochainsSection';
 import { AVMSection } from './sections/AVMSection';
 import { AgentProtocolsLandingSection } from './sections/AgentProtocolsLandingSection';
-import { AgentProtocolsSection } from './sections/AgentProtocolsSection';
 import { AIInterfaceSection } from './sections/AIInterfaceSection';
 import { TokenomicsSection } from './sections/TokenomicsSection';
 import { ClosingSection } from './sections/ClosingSection';

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Network, Users, Zap, Shield, Search, MessageSquare, Play, DollarSign, ArrowRight, CheckCircle, Code2, Database } from 'lucide-react';
+import { Users, Shield, Search, MessageSquare, Play, DollarSign, ArrowRight, CheckCircle, Code2, Database } from 'lucide-react';
 
 export const AgentProtocolsLandingSection: React.FC = () => {
   // Listen for URL hash changes to scroll to sections
@@ -274,7 +274,7 @@ export const AgentProtocolsLandingSection: React.FC = () => {
                 
                 <div className="bg-gray-500/20 border border-gray-500/30 rounded-lg p-4 backdrop-blur-sm">
                   <div className="text-sm font-semibold text-white mb-2">Payment Integration</div>
-                  <p className="text-xs text-gray-300">All operations accept payment={mode, cap, tip} and yield x402-style receipts</p>
+                  <p className="text-xs text-gray-300">All operations accept payment=&#123;mode, cap, tip&#125; and yield x402-style receipts</p>
                 </div>
               </div>
             </div>
