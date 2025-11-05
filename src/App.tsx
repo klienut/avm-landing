@@ -105,29 +105,7 @@ function App() {
     {
       id: 'agent-protocols',
       title: 'Agent Protocol Suite',
-      component: <AgentProtocolsLandingSection />,
-      subsections: [
-        {
-          id: 'coordination-lifecycle',
-          title: 'Four-Phase Coordination Lifecycle',
-          component: <AgentProtocolsSection />
-        },
-        {
-          id: 'coordination-fabric',
-          title: 'The Coordination Fabric',
-          component: <AgentProtocolsSection />
-        },
-        {
-          id: 'os-apis',
-          title: 'OS-like APIs',
-          component: <AgentProtocolsSection />
-        },
-        {
-          id: 'safety-guarantees',
-          title: 'Safety Guarantees',
-          component: <AgentProtocolsSection />
-        }
-      ]
+      component: <AgentProtocolsLandingSection />
     },
     {
       id: 'ai-interface',
