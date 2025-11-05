@@ -12,7 +12,7 @@ import { HydraSection } from './sections/HydraSection';
 import { HyperChainLandingSection } from './sections/HyperChainLandingSection';
 import { DAPSection } from './sections/DAPSection';
 import { NanochainsSection } from './sections/NanochainsSection';
-import { HyperChainSection } from './sections/HyperChainSection';
+import { AVMSection } from './sections/AVMSection';
 import { AgentProtocolsLandingSection } from './sections/AgentProtocolsLandingSection';
 import { AgentProtocolsSection } from './sections/AgentProtocolsSection';
 import { AIInterfaceSection } from './sections/AIInterfaceSection';
@@ -96,19 +96,9 @@ function App() {
           component: <NanochainsSection />
         },
         {
-          id: 'beacon-chain',
-          title: 'Beacon Chain & BFT Finality',
-          component: <HyperChainSection />
-        },
-        {
-          id: 'zshard-vm',
-          title: 'ZShard VM — Verifier-Only Execution',
-          component: <HyperChainSection />
-        },
-        {
-          id: 'utxo-model',
-          title: 'Turing-Complete UTXO Model',
-          component: <HyperChainSection />
+          id: 'avm',
+          title: 'Agentic VM — Stateless UTXO with zk-Aggregated Finality',
+          component: <AVMSection />
         }
       ]
     },

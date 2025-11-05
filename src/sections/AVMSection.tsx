@@ -1,442 +1,418 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Button } from '../components/ui/button';
-import { 
-  FileText, 
-  Code, 
-  Link as LinkIcon, 
-  Calculator, 
-  Search,
-  ArrowRight,
-  Zap,
-  Shield,
-  Coins,
-  GitBranch
-} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Code2, Zap, Shield, Database, GitBranch, Layers, CheckCircle, Clock, Users } from 'lucide-react';
 
 export const AVMSection: React.FC = () => {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const staggerChildren = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* Animated Circuit Background */}
-      <div className="fixed inset-0 pointer-events-none">
-        <motion.div 
-          style={{ y }}
-          className="absolute inset-0 opacity-10"
-        >
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="circuit" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 0 10 L 10 10 L 10 0 M 10 20 L 10 10 L 20 10" 
-                      stroke="currentColor" 
-                      strokeWidth="0.5" 
-                      fill="none"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#circuit)" />
-          </svg>
-        </motion.div>
-        
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-green-500/10" />
+    <div className="min-h-screen bg-background text-foreground py-20 px-6 overflow-x-hidden">
+      {/* Background Elements */}
+      <div className="fixed inset-0 pointer-events-none opacity-5">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-blue-500/5 to-cyan-500/10" />
       </div>
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-6xl md:text-8xl font-light mb-8 leading-tight">
-              <span className="block text-muted-foreground text-lg font-medium mb-4 tracking-widest uppercase">
-                Autonomy You Can Audit
-              </span>
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
-                Agentic Virtual Machine
-              </span>
-              <br />
-              <span className="text-muted-foreground text-3xl md:text-5xl">
-                The execution layer for autonomous zk-agents
-              </span>
-            </h1>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed"
-          >
-            The AVM standardizes how autonomous agents prove behavior, cost, and collaboration — 
-            a verifiable economy for off-chain intelligence.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center mb-16"
-          >
-            <Button 
-              size="lg" 
-              className="bg-white text-black hover:bg-gray-200 text-lg px-8 py-6 h-auto"
-            >
-              <FileText className="w-5 h-5 mr-2" />
-              Read the Whitepaper
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="border-white/20 text-white hover:bg-white/10 text-lg px-8 py-6 h-auto"
-            >
-              <Code className="w-5 h-5 mr-2" />
-              Launch Agent Studio SDK
-            </Button>
-          </motion.div>
-
-          {/* Stats Badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-wrap justify-center gap-4 text-sm"
-          >
-            {[
-              { icon: Zap, label: "Proof-First" },
-              { icon: GitBranch, label: "Composable" },
-              { icon: Coins, label: "Predictable Fees" },
-              { icon: Shield, label: "ZK-Native" }
-            ].map((badge, index) => (
-              <div 
-                key={badge.label}
-                className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm"
-              >
-                <badge.icon className="w-4 h-4" />
-                <span>{badge.label}</span>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* What Is AVM Section */}
-      <section className="relative py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-6xl font-light mb-6">
-              <span className="text-muted-foreground">What Is the</span>
-              <br />
-              <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-                AVM
-              </span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              The runtime for verifiable agents.
+      <div className="max-w-7xl mx-auto relative">
+        {/* Hero Section */}
+        <motion.div 
+          className="text-center mb-20"
+          {...fadeInUp}
+        >
+          <h1 className="text-5xl md:text-6xl font-light mb-6 leading-tight">
+            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+              Agentic VM —
+            </span>
+            <br />
+            <span className="text-white">Stateless UTXO with zk-Aggregated Finality</span>
+          </h1>
+          <p className="text-2xl text-purple-200 font-medium mb-8">
+            Program agents with scripts; prove off-chain; aggregate on-chain.
+          </p>
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 max-w-4xl mx-auto backdrop-blur-sm">
+            <p className="text-lg text-gray-300 leading-relaxed">
+              AVM turns agent logic into UTXO scripts with activation conditions. Users prove locally; 
+              producers verify & aggregate; the beacon finalizes. No state replay, no contention—just 
+              proofs, predicates, and a new root.
             </p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Column - Text */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <div className="space-y-6 text-lg leading-relaxed">
-                <p className="text-muted-foreground">
-                  The AVM is the execution layer for autonomous zk-agents — a standardized proving schema rather than a traditional bytecode VM.
-                  Each agent deployed to the AVM is encoded as a network of prover circuits (its own logic and state transitions) and verifier circuits 
-                  (proof checkers for external tasks it delegates to other agents).
-                </p>
-                
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0" />
-                    <span>Modular ZK execution (FSM · zkTLS · zkVM)</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full mt-3 flex-shrink-0" />
-                    <span>Embedded pricing variable and metering</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-purple-400 rounded-full mt-3 flex-shrink-0" />
-                    <span>Recursive verification of sub-proofs</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mt-3 flex-shrink-0" />
-                    <span>Stateless aggregation on ZShard</span>
-                  </li>
-                </ul>
-              </div>
-            </motion.div>
-
-            {/* Right Column - Animated Diagram */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-2xl p-8 backdrop-blur-sm">
-                <div className="space-y-6">
-                  {/* Agent Node */}
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    viewport={{ once: true }}
-                    className="bg-blue-500/20 border border-blue-500/30 rounded-lg p-4 text-center"
-                  >
-                    <div className="text-blue-400 font-semibold">Agent Node</div>
-                    <div className="text-sm text-muted-foreground mt-1">Prover Circuit</div>
-                  </motion.div>
-
-                  {/* Arrow Down */}
-                  <div className="flex justify-center">
-                    <ArrowRight className="w-6 h-6 text-muted-foreground rotate-90" />
-                  </div>
-
-                  {/* Sub-agent Proofs */}
-                  <div className="grid grid-cols-2 gap-4">
-                    {['Sub-Proof A', 'Sub-Proof B'].map((label, index) => (
-                      <motion.div
-                        key={label}
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                        viewport={{ once: true }}
-                        className="bg-green-500/20 border border-green-500/30 rounded-lg p-3 text-center text-sm"
-                      >
-                        <div className="text-green-400 font-medium">{label}</div>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Arrow Down */}
-                  <div className="flex justify-center">
-                    <ArrowRight className="w-6 h-6 text-muted-foreground rotate-90" />
-                  </div>
-
-                  {/* Aggregated Proof */}
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                    viewport={{ once: true }}
-                    className="bg-purple-500/20 border border-purple-500/30 rounded-lg p-4 text-center"
-                  >
-                    <div className="text-purple-400 font-semibold">Aggregated Proof</div>
-                    <div className="text-sm text-muted-foreground mt-1">→ Blockchain</div>
-                  </motion.div>
-                </div>
-              </div>
-
-              {/* Tagline */}
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                viewport={{ once: true }}
-                className="text-center text-muted-foreground mt-6 italic"
-              >
-                Agents prove behavior, cost, and trust — not just computation.
-              </motion.p>
-            </motion.div>
           </div>
-        </div>
-      </section>
+        </motion.div>
 
-      {/* Agent Studio Section */}
-      <section className="relative py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-6xl font-light mb-6">
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Agent Studio
-              </span>
-              <br />
-              <span className="text-muted-foreground text-3xl">(Developer Framework)</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Design, simulate, and deploy AVM-compatible agents.
-            </p>
-          </motion.div>
-
-          {/* Gradient Split Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="relative overflow-hidden rounded-3xl"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-blue-500/10" />
-            <div className="relative bg-white/5 border border-white/10 backdrop-blur-sm p-12">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                {/* Left - Features */}
-                <div className="space-y-8">
-                  <div className="space-y-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-3 h-3 bg-purple-400 rounded-full mt-2 flex-shrink-0" />
-                      <div>
-                        <h3 className="text-lg font-semibold text-purple-400 mb-2">
-                          Compose prover + verifier circuits
-                        </h3>
-                        <p className="text-muted-foreground">
-                          Visually or in DSL with modular, reusable components.
-                        </p>
+        {/* Main Diagram */}
+        <motion.div 
+          className="mb-20"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <div className="bg-white/5 border border-white/10 rounded-3xl p-12 backdrop-blur-sm">
+            <div className="flex items-center justify-center mb-8">
+              <div className="flex gap-2">
+                <span className="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm border border-green-500/30">Stateless</span>
+                <span className="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm border border-blue-500/30">Reserved Lanes</span>
+                <span className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm border border-purple-500/30">DAP-gated Finality</span>
+              </div>
+            </div>
+            
+            {/* Diagram Flow */}
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
+              {/* User Transactions */}
+              <div className="flex flex-col gap-4">
+                <h3 className="text-center text-white font-medium mb-4">User Transactions</h3>
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="bg-white/10 border border-white/20 rounded-xl p-4 w-48">
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center gap-2 text-green-300">
+                        <CheckCircle className="w-4 h-4" />
+                        <span>Script predicate ✓</span>
                       </div>
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <div className="w-3 h-3 bg-pink-400 rounded-full mt-2 flex-shrink-0" />
-                      <div>
-                        <h3 className="text-lg font-semibold text-pink-400 mb-2">
-                          Define fee policies
-                        </h3>
-                        <p className="text-muted-foreground">
-                          Verify worst-case pricing scenarios before deployment.
-                        </p>
+                      <div className="flex items-center gap-2 text-blue-300">
+                        <GitBranch className="w-4 h-4" />
+                        <span>Merkle branch</span>
                       </div>
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <div className="w-3 h-3 bg-blue-400 rounded-full mt-2 flex-shrink-0" />
-                      <div>
-                        <h3 className="text-lg font-semibold text-blue-400 mb-2">
-                          Compile to AVM bytecode
-                        </h3>
-                        <p className="text-muted-foreground">
-                          Generate manifest (code_hash, VKs, fee_policy) for chain registration.
-                        </p>
+                      <div className="flex items-center gap-2 text-purple-300">
+                        <Shield className="w-4 h-4" />
+                        <span>Nullifier N{i}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-cyan-300">
+                        <Layers className="w-4 h-4" />
+                        <span>Sub-proofs</span>
                       </div>
                     </div>
                   </div>
+                ))}
+              </div>
 
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button 
-                      variant="outline" 
-                      className="border-white/20 text-white hover:bg-white/10"
-                    >
-                      Open SDK Docs
-                    </Button>
-                    <Button 
-                      variant="outline"
-                      className="border-white/20 text-white hover:bg-white/10"
-                    >
-                      Join Devnet
-                    </Button>
+              {/* Arrow */}
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 hidden lg:block"></div>
+                <div className="w-0.5 h-12 bg-gradient-to-b from-purple-400 to-cyan-400 lg:hidden"></div>
+              </div>
+
+              {/* Producer */}
+              <div className="flex flex-col items-center gap-6">
+                <h3 className="text-white font-medium">Producer</h3>
+                <div className="space-y-4">
+                  <div className="bg-orange-500/20 border border-orange-500/30 rounded-xl p-4 text-center">
+                    <Zap className="w-6 h-6 text-orange-300 mx-auto mb-2" />
+                    <span className="text-orange-300 text-sm font-medium">Aggregation Circuit</span>
+                  </div>
+                  <div className="bg-indigo-500/20 border border-indigo-500/30 rounded-xl p-4 text-center">
+                    <Database className="w-6 h-6 text-indigo-300 mx-auto mb-2" />
+                    <span className="text-indigo-300 text-sm font-medium">Root-transition Circuit</span>
                   </div>
                 </div>
+              </div>
 
-                {/* Right - Code Example */}
-                <div className="relative">
-                  <div className="bg-black/40 border border-white/10 rounded-xl p-6 font-mono text-sm overflow-x-auto">
-                    <pre className="text-gray-300">
-                      <span className="text-green-400">{`// Agent Studio SDK Example`}</span>{'\n'}
-                      <span className="text-blue-400">const</span> agent = <span className="text-yellow-400">new</span> <span className="text-purple-400">AgentBuilder</span>(){'\n'}
-                      {'  '}.addProvingCircuit(myLogicCircuit){'\n'}
-                      {'  '}.addVerifierCircuit(delegationVerifier){'\n'}
-                      {'  '}.setFeePolicy(adaptivePricing){'\n'}
-                      {'  '}.simulate({'{ maxSteps: '}<span className="text-cyan-400">10000</span>{' }'}{'\n'}
-                      {'  '}.compile();{'\n'}
-                      {'\n'}
-                      <span className="text-blue-400">const</span> manifest = agent.getManifest();{'\n'}
-                      <span className="text-gray-500">{`// { code_hash, VKs, fee_policy }`}</span>
-                    </pre>
+              {/* Arrow */}
+              <div className="flex flex-col items-center">
+                <div className="w-12 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 hidden lg:block"></div>
+                <div className="w-0.5 h-12 bg-gradient-to-b from-purple-400 to-cyan-400 lg:hidden"></div>
+              </div>
+
+              {/* Beacon */}
+              <div className="flex flex-col items-center gap-4">
+                <h3 className="text-white font-medium">Finality</h3>
+                <div className="bg-green-500/20 border border-green-500/30 rounded-xl p-6 text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <CheckCircle className="w-8 h-8 text-white" />
                   </div>
+                  <span className="text-green-300 text-sm font-medium">New State Root</span>
+                  <div className="text-xs text-green-400 mt-1">Beacon (BFT)</div>
                 </div>
               </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why It Matters Section */}
-      <section className="relative py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-6xl font-light mb-6">
-              <span className="text-foreground">Why It</span>
-              <br />
-              <span className="bg-gradient-to-r from-cyan-400 to-green-400 bg-clip-text text-transparent">
-                Matters
-              </span>
-            </h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: LinkIcon,
-                title: "Composability",
-                description: "Agents verify each other's proofs instead of re-executing logic.",
-                color: "from-blue-400 to-cyan-400"
-              },
-              {
-                icon: Calculator,
-                title: "Economic Predictability", 
-                description: "Consistent metering → transparent cost model.",
-                color: "from-green-400 to-blue-400"
-              },
-              {
-                icon: Search,
-                title: "Auditability",
-                description: "Uniform proof interface → aggregated verification on-chain.",
-                color: "from-purple-400 to-pink-400"
-              }
-            ].map((card, index) => (
-              <motion.div
-                key={card.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-8 h-full backdrop-blur-sm transition-all duration-300 group-hover:bg-white/10 group-hover:border-white/20">
-                  <div className="space-y-6">
-                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${card.color} flex items-center justify-center mb-6`}>
-                      <card.icon className="w-8 h-8 text-white" />
-                    </div>
-                    
-                    <h3 className="text-2xl font-semibold">{card.title}</h3>
-                    
-                    <p className="text-muted-foreground leading-relaxed">
-                      {card.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+            
+            <div className="text-center mt-8 text-sm text-gray-400">
+              Only previous root + branches required
+            </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+
+        {/* Content Sections */}
+        <motion.div 
+          className="grid lg:grid-cols-2 gap-8 mb-16"
+          variants={staggerChildren}
+          initial="initial"
+          animate="animate"
+        >
+          {/* What AVM Is */}
+          <motion.div 
+            className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm"
+            variants={fadeInUp}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Code2 className="w-8 h-8 text-purple-400" />
+              <h3 className="text-2xl font-semibold text-white">What AVM Is</h3>
+            </div>
+            <ul className="space-y-3 text-gray-300">
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 shrink-0" />
+                <span>UTXO model with scriptable activation conditions (general programmability via predicates/covenants)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 shrink-0" />
+                <span>Designed for agent programs: FSM rules, policy checks, capability gates</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-2 shrink-0" />
+                <span>Proof-centric: transactions carry proofs; the chain verifies & aggregates rather than re-executes</span>
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Programming Model */}
+          <motion.div 
+            className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm"
+            variants={fadeInUp}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Layers className="w-8 h-8 text-blue-400" />
+              <h3 className="text-2xl font-semibold text-white">Programming Model</h3>
+            </div>
+            <ul className="space-y-3 text-gray-300">
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 shrink-0" />
+                <span>Notes (UTXOs) embed validity predicates; spending requires proving predicate satisfaction</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 shrink-0" />
+                <span>General programmability via composable script templates (timelocks, multisig, capability tokens, policy gates)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 shrink-0" />
+                <span>Turing-complete via script composition; heavy compute relegated to verifier sub-proofs (zkVM/zkML)</span>
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Stateless Validation */}
+          <motion.div 
+            className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm"
+            variants={fadeInUp}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Database className="w-8 h-8 text-green-400" />
+              <h3 className="text-2xl font-semibold text-white">Stateless Validation</h3>
+              <span className="bg-green-500/20 text-green-300 px-2 py-1 rounded text-xs border border-green-500/30">Prior root + branches = enough</span>
+            </div>
+            <ul className="space-y-3 text-gray-300">
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 shrink-0" />
+                <span>Producers need: (a) prior shard root, (b) Merkle branches for spent notes, (c) empty-leaf witnesses for new notes, (d) nullifiers</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 shrink-0" />
+                <span>No full state required—enables rapid leader rotation and constant verification cost</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 shrink-0" />
+                <span>Result: stateless production, near-constant verification cost per transaction</span>
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Who Proves What */}
+          <motion.div 
+            className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-sm"
+            variants={fadeInUp}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Users className="w-8 h-8 text-cyan-400" />
+              <h3 className="text-2xl font-semibold text-white">Who Proves What</h3>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-cyan-300 font-medium mb-2">User-side:</h4>
+                <p className="text-gray-300 text-sm">Each tx carries a spend proof (script predicate satisfied, membership, nullifier uniqueness)</p>
+              </div>
+              <div>
+                <h4 className="text-cyan-300 font-medium mb-2">Producer circuits:</h4>
+                <ul className="space-y-2 text-gray-300 text-sm ml-4">
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 shrink-0" />
+                    <span><strong>Aggregation circuit:</strong> verifies all included per-tx proofs</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 shrink-0" />
+                    <span><strong>Root-transition circuit:</strong> computes new Merkle root from inputs/outputs/nullifiers</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Reserved Lanes - Full Width */}
+        <motion.div 
+          className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-2xl p-8 mb-16 backdrop-blur-sm"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <Clock className="w-8 h-8 text-orange-400" />
+            <h3 className="text-3xl font-semibold text-white">Reserved Lanes</h3>
+            <span className="bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-sm border border-orange-500/30">Never starve the lifelines</span>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="text-xl text-orange-300 font-medium mb-4">Guaranteed Inclusion Lanes:</h4>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mt-2 shrink-0" />
+                  <span>Hydra channel ops (open/close/refresh/dispute)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mt-2 shrink-0" />
+                  <span>DA/DAP commitments & probe receipts</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mt-2 shrink-0" />
+                  <span>Safety/dispute messages</span>
+                </li>
+              </ul>
+            </div>
+            <div className="bg-orange-500/10 border border-orange-500/20 rounded-xl p-6">
+              <p className="text-orange-200 font-medium text-lg mb-2">Payments, DA, and disputes get their own lane</p>
+              <p className="text-orange-300/80">So lifelines never wait behind market noise</p>
+              <div className="mt-4 text-sm text-gray-400">
+                Prevents starvation seen in "general-fee" designs (e.g., L1 congestion delaying L2/DA ops)
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Additional Sections Grid */}
+        <motion.div 
+          className="grid lg:grid-cols-3 gap-6 mb-16"
+          variants={staggerChildren}
+          initial="initial"
+          animate="animate"
+        >
+          {/* Cross-shard & Finality */}
+          <motion.div 
+            className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm"
+            variants={fadeInUp}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <GitBranch className="w-6 h-6 text-purple-400" />
+              <h4 className="text-lg font-semibold text-white">Cross-shard & Finality</h4>
+            </div>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-1.5 shrink-0" />
+                <span>Burn-mint receipts for atomic cross-shard moves</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-1.5 shrink-0" />
+                <span>Beacon runs BFT for fast ordering/finality</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-purple-400 rounded-full mt-1.5 shrink-0" />
+                <span>Tips only extend when DAP accessibility passes</span>
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Fee & Metering */}
+          <motion.div 
+            className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm"
+            variants={fadeInUp}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <Zap className="w-6 h-6 text-cyan-400" />
+              <h4 className="text-lg font-semibold text-white">Fee & Metering</h4>
+            </div>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 shrink-0" />
+                <span>On-chain gas = verifier-weight + log-tree work + reserved-lane tariff</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 shrink-0" />
+                <span>Aligns with ProofFabric's pricing accumulator</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 shrink-0" />
+                <span>Predictable costs visible pre-execution</span>
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Developer Experience */}
+          <motion.div 
+            className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm"
+            variants={fadeInUp}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <Code2 className="w-6 h-6 text-green-400" />
+              <h4 className="text-lg font-semibold text-white">Developer Experience</h4>
+            </div>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 shrink-0" />
+                <span>Author scripts via Agent Studio; compile to AVM predicates</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 shrink-0" />
+                <span>Import verifier gadgets (zkTLS/zkVM/zkML) as sub-proof checks</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 shrink-0" />
+                <span>Canonical interface: state_in, state_out, nullifiers[], subproofs[], fee_accumulator</span>
+              </li>
+            </ul>
+          </motion.div>
+        </motion.div>
+
+        {/* Security Properties */}
+        <motion.div 
+          className="bg-gradient-to-br from-red-500/10 to-pink-500/10 border border-red-500/20 rounded-2xl p-8 backdrop-blur-sm"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <Shield className="w-8 h-8 text-red-400" />
+            <h3 className="text-2xl font-semibold text-white">Security Properties</h3>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <ul className="space-y-3 text-gray-300">
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-red-400 rounded-full mt-2 shrink-0" />
+                <span>No re-execution → low consensus cost</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-red-400 rounded-full mt-2 shrink-0" />
+                <span>Nullifier set prevents double-spends; per-block distinctness checks</span>
+              </li>
+            </ul>
+            <ul className="space-y-3 text-gray-300">
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-red-400 rounded-full mt-2 shrink-0" />
+                <span>Acyclic sub-proof DAG within an epoch</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-red-400 rounded-full mt-2 shrink-0" />
+                <span>DA-gated finality (fail-closed if blobs not accessible)</span>
+              </li>
+            </ul>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 };
